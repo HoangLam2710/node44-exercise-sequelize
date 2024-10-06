@@ -4,15 +4,12 @@ import sequelize from "../models/connect.js";
 
 const model = initModels(sequelize);
 
-const getLikeRestaurant = async (req, res) => {
+const getListUserLikeRestaurant = async (req, res) => {
   try {
     const { res_id } = req.params;
-    // cuz don't have use authen so get userId from body
-    // in real project, should use authen to get userId
-    const { userId } = req.body;
 
-    const likeResExist = await model.like_res.findOne({
-      where: { res_id, user_id: userId },
+    const likeResExist = await model.like_res.findAll({
+      where: { res_id },
     });
 
     if (!likeResExist) {
@@ -58,15 +55,12 @@ const toggleLikeRestaurant = async (req, res) => {
   }
 };
 
-const getRateRestaurant = async (req, res) => {
+const getListUserRateRestaurant = async (req, res) => {
   try {
     const { res_id } = req.params;
-    // cuz don't have use authen so get userId from body
-    // in real project, should use authen to get userId
-    const { userId } = req.body;
 
-    const rateResExist = await model.rate_res.findOne({
-      where: { res_id, user_id: userId },
+    const rateResExist = await model.rate_res.findAll({
+      where: { res_id },
     });
 
     if (!rateResExist) {
@@ -112,8 +106,8 @@ const createRateRestaurant = async (req, res) => {
 };
 
 export {
-  getLikeRestaurant,
+  getListUserLikeRestaurant,
   toggleLikeRestaurant,
-  getRateRestaurant,
+  getListUserRateRestaurant,
   createRateRestaurant,
 };
