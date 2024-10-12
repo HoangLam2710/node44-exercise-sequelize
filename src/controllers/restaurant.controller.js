@@ -13,7 +13,6 @@ const getListUserLikeRestaurant = async (req, res) => {
     });
 
     if (!likeResExist) {
-      // cuz don't have field is_deleted to soft delete so use destroy to hard delete
       return res
         .status(BAD_REQUEST)
         .json({ message: "Like restaurant not found" });
@@ -64,7 +63,6 @@ const getListUserRateRestaurant = async (req, res) => {
     });
 
     if (!rateResExist) {
-      // cuz don't have field is_deleted to soft delete so use destroy to hard delete
       return res
         .status(BAD_REQUEST)
         .json({ message: "Rate restaurant not found" });
@@ -79,8 +77,6 @@ const getListUserRateRestaurant = async (req, res) => {
 const createRateRestaurant = async (req, res) => {
   try {
     const { res_id } = req.params;
-    // cuz don't have use authen so get userId from body
-    // in real project, should use authen to get userId
     const { userId, amount } = req.body;
 
     const rateResExist = await model.rate_res.findOne({

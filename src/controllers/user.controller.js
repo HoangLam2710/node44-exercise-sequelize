@@ -13,7 +13,6 @@ const getListRestaurantLikedByUser = async (req, res) => {
     });
 
     if (!likeResExist) {
-      // cuz don't have field is_deleted to soft delete so use destroy to hard delete
       return res
         .status(BAD_REQUEST)
         .json({ message: "Like restaurant not found" });
@@ -34,7 +33,6 @@ const getListRestaurantRatedByUser = async (req, res) => {
     });
 
     if (!rateResExist) {
-      // cuz don't have field is_deleted to soft delete so use destroy to hard delete
       return res
         .status(BAD_REQUEST)
         .json({ message: "Like restaurant not found" });
